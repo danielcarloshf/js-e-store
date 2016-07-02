@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  div(class="container")
+    div(class="col-sm-8 col-sm-offset-2")
+      h1(class="text-center"): span(class="fa fa-sign-in") Signup
+      -if (message.length > 0)
+        div(class="alert alert-danger") !{message}
+      form(action="/signup", method="post", class="form-horizontal")
+        hr
+        h4: span(class="fa fa-user") &nbsp;Personal information
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Username
+          div(class="col-sm-10")
+            input(type="text", placeholder="Username", class="form-control", name="username")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Password
+          div(class="col-sm-10")
+            input(type="password", placeholder="Password", class="form-control", name="password")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") First name
+          div(class="col-sm-10")
+            input(type="text", placeholder="First name", class="form-control", name="firstname")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Last name
+          div(class="col-sm-10")
+            input(type="text", placeholder="Last name", class="form-control", name="lastname")
+        hr
+        h4: span(class="fa fa-envelope") &nbsp;Address information
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Street
+          div(class="col-sm-10")
+            input(type="text", placeholder="Street", class="form-control", name="street")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Number
+          div(class="col-sm-4")
+            input(type="text", placeholder="-", class="form-control", name="number")
+          label(class="col-sm-2 control-label") Zip Code
+          div(class="col-sm-4")
+            input(type="text", placeholder="00000-000", class="form-control", name="zipcode")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") City
+          div(class="col-sm-6")
+            input(type="text", placeholder="City", class="form-control", name="city")
+          label(class="col-sm-2 control-label") State
+          div(class="col-sm-2")
+            input(type="text", placeholder="State", class="form-control", name="state")
+        div(class="form-group")
+          label(class="col-sm-2 control-label") Country
+          div(class="col-sm-10")
+            input(type="text", placeholder="Country", class="form-control", name="country")
+        div(class="text-right")
+          button(type="submit", class="btn btn-warning btn-lg") Signup
+        hr
+        p(class="text-center")
+          span Already have an account?&nbsp;
+          a(href="/login") Login
+          span , or go&nbsp;
+          a(href="/") back
+          span .
+      hr

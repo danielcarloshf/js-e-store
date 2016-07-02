@@ -1,0 +1,50 @@
+script(src="/libs/jquery/dist/jquery.min.js")
+script(src="/libs/bootstrap/dist/js/bootstrap.min.js")
+
+nav(class="navbar navbar-default navbar-fixed-top", role="navigation")
+
+  div(class="navbar-header")
+
+    button(type="button", data-target="#navbarCollapse", data-toggle="collapse", class="navbar-toggle")
+      span(class="sr-only") Toggle navigation
+      span(class="icon-bar")
+      span(class="icon-bar")
+      span(class="icon-bar")
+
+    a(href="/home" class="navbar-brand") JS E-Store
+
+  div(id="navbarCollapse", class="collapse navbar-collapse")
+
+    div(class="container-fluid")
+
+      form(class="navbar-form navbar-right" role="search" action="/product", method="post")
+        div(class="form-group")
+          div(class="input-group")
+            input(type="text", class="form-control", placeholder="Search products", name="search")
+            span(class="input-group-btn")
+              button(type="submit", title="Search products", class="btn btn-info") Go!
+
+      ul(class="nav navbar-nav navbar-left")
+        li
+          a(href="/profile")
+            span(class="fa fa-user")
+            span !{" " + user.firstname}
+        li
+          a(href="/cart")
+            span(class="fa fa-shopping-cart")
+            span &nbsp; My cart
+        li(class="dropdown")
+          a(href="#", class="dropdown-toggle", data-toggle="dropdown", role="button", aria-expanded="false") Categories&nbsp;
+            span(class="caret")
+          ul(class="dropdown-menu", role="menu")
+            li: a(href="/product/Birds") Birds
+            li: a(href="/product/Cats") Cats
+            li: a(href="/product/Dogs") Dogs
+            li: a(href="/product/Fish") Fish
+            li: a(href="/product/Reptiles") Reptiles
+            li(class="divider")
+            li: a(href="/product") All products
+        li
+          a(href="/logout")
+            span(class="fa fa-sign-out")
+            span &nbsp; Logout

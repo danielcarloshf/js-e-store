@@ -1,0 +1,72 @@
+extends layout
+
+block scripts
+  script(src="/libs/jquery/dist/jquery.min.js")
+  script(src="/js/order.js")
+
+block content
+  include navigation
+
+  div(class="container")
+    if(products.length > 0)
+      div(class="col-sm-8 col-sm-offset-2")
+        h4: span(class="fa fa-money") &nbsp;Order details
+        table(class="table table-hover")
+          thead
+            tr
+              th Code
+              th Name
+              th Price
+              th Quantity
+              th Subtotal
+          tbody
+            each product, index in products
+              tr(class="tr-item")
+                td(id="prod_id_"+index)=product.id
+                td(id="prod_name_"+index)=product.name
+                td(id="prod_price_"+index)='$'+product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                td(id="prod_quantity_"+index)=product.quantity
+                td(id="prod_subtotal_"+index)='$'+product.subtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+          tfoot
+            tr
+              th(colspan="4")
+              th Total
+                span(id="total_cost") !{' $'+total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+        hr
+      div(class="col-sm-8 col-sm-offset-2")
+        h4: span(class="fa fa-envelope") &nbsp;Shipping information
+        div(class="form-horizontal")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Street
+            div(class="col-sm-10")
+              input(type="text", id="in-street", value=address['street'], class="form-control", name="street")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Number
+            div(class="col-sm-4")
+              input(type="text", id="in-number", value=address['number'], class="form-control", name="number")
+            label(class="col-sm-2 control-label") Zip Code
+            div(class="col-sm-4")
+              input(type="text", id="in-zipcode", value=address['zipcode'], class="form-control", name="zipcode")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") City
+            div(class="col-sm-6")
+              input(type="text", id="in-city", value=address['city'], class="form-control", name="city")
+            label(class="col-sm-2 control-label") State
+            div(class="col-sm-2")
+              input(type="text", id="in-state", value=address['state'], class="form-control", name="state")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Country
+            div(class="col-sm-10")
+              input(type="text", id="in-country", value=address['country'], class="form-control", name="country")
+          hr
+          h4: span(class="fa fa-check-square-o") &nbsp;Finish your order or keep buying.
+          div(class="form-group")
+            div(class="col-sm-5 col-sm-offset-1")
+              button(id="btn-ok", class="col-sm-10 btn btn-success btn-lg", title="Click here to finish your order.") Buy
+            div(class="col-sm-5 col-sm-offset-1")
+              button(id="btn-cancel", class=" col-sm-10 btn btn-info btn-lg", title="Click here to go back.") Keep on store
+          hr
+    else
+      h3(class="text-center") Fill your&nbsp;
+        a(href="/product") cart
+        | &nbsp;and come back later.

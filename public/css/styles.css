@@ -1,0 +1,28 @@
+/**
+ * File: src/public/css/styles.css
+ * Author: Daniel Carlos Hovadick Félix
+ *
+ * Set up the web interface custom styles.
+ */
+
+.container {
+  padding-top:60px;
+}
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -5em;
+}
+
+.footer, .push {
+  height: 5em;
+}

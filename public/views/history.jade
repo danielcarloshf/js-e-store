@@ -1,0 +1,47 @@
+extends layout
+
+block content
+
+  include navigation
+
+  div(class="container")
+    div(class="col-sm-10 col-sm-offset-1")
+      div(class="well")
+        h3: span(class="fa fa-history") &nbsp;Purchase history
+        each order in history
+          p
+            strong Protocol number:
+            | !{" " + order._id}
+            br
+            strong Purchase date:
+            | !{" "+order.date}
+            br
+            strong: span("fa fa-envelope") Shipping address:
+            | !{" " + order.address.street + ", " + order.address.number + ", "}
+            | !{"Zip code: " + order.address.zipcode + ", " + order.address.city + "/" + order.address.state + ", "}
+            | !{order.address.country + "."}
+
+          table(class="table table-hover")
+            thead
+              tr
+                th Code
+                th Name
+                th Price
+                th Quantity
+                th Subtotal
+            tbody
+              each product in order.items
+                tr(class="tr-item")
+                  td=product.code
+                  td=product.name
+                  td='$'+product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                  td=product.quantity
+                  td='$'+(product.price*product.quantity).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+            tfoot
+              tr
+                th(colspan="4")
+                th
+                  strong Total: !{order.total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+
+        div(class="text-center")
+          a(class="btn btn-default btn-lg", type="button", href="/profile") Finish

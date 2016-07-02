@@ -1,0 +1,31 @@
+extends layout
+
+block scripts
+  script(src="/libs/jquery/dist/jquery.min.js")
+  script(src="/js/cart.js")
+  script(src="/js/product.js")
+
+block content
+
+  include navigation
+
+  div(class="container")
+    if(products.length > 0)
+      table(class="table table-hover")
+        thead
+          tr
+            th Code
+            th Name
+            th Description
+            th Price
+            th Buy
+        tbody
+          each product, index in products
+            tr
+              td(id="prod_id_"+index)=product._id
+              td(id="prod_name_"+index)=product.name
+              td(id="prod_desc_"+index)=product.description
+              td(id="prod_price_"+index)='$'+product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+              td: a(href="/cart", onclick="addToCart("+index+", 1);") Buy this
+    else
+      h3(class="text-center") No products found.

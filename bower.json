@@ -1,0 +1,19 @@
+{
+  "name": "js-e-store",
+  "version": "0.0.1",
+  "authors": [
+    "Daniel Hovadick <danielcarloshf@hotmail.com>"
+  ],
+  "description": "E-commerce sample application",
+  "keywords": [
+    "javascript",
+    "node",
+    "express"
+  ],
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "font-awesome": "~4.2.0",
+    "jquery-ui": "~1.11.2"
+  }
+}

@@ -1,0 +1,92 @@
+extends layout
+
+block scripts
+  link(rel="stylesheet", href="/libs/jquery-ui/themes/smoothness/jquery-ui.css")
+  script(src="/libs/jquery/dist/jquery.min.js")
+  script(src="/libs/jquery-ui/jquery-ui.min.js")
+  script(src="/js/profile.js")
+
+block content
+
+  include navigation
+
+  div(class="container")
+    div(class="row")
+      div(class="col-sm-6 col-sm-offset-3")
+        div(class="well")
+          h3: span(class="fa fa-user") &nbsp;User information
+
+          p
+            strong id:&nbsp;
+            span !{user._id}
+            br
+            strong Username:&nbsp;
+            span !{user.username}
+            br
+            strong Name:&nbsp;
+            span !{user.firstname +" "+ user.lastname}
+
+          div(class="text-center")
+            a(class="btn btn-default", type="button", href="/history") Purchase history
+
+          hr
+
+          h3: span(class="fa fa-envelope") &nbsp;Address
+
+          p
+            strong Street:&nbsp;
+            span(id="street") !{address.street}
+            br
+            strong Number:&nbsp;
+            span(id="number") !{address.number}
+            span &nbsp;
+            strong Zip Code:&nbsp;
+            span(id="zipcode") !{address.zipcode}
+            br
+            strong City:&nbsp;
+            span(id="city") !{address.city}
+            span &nbsp;
+            strong State:&nbsp;
+            span(id="state") !{address.state}
+            br
+            strong Country:&nbsp;
+            span(id="country") !{address.country}
+
+          div(class="text-center")
+            button(id="btn-edit", class="btn btn-default") Edit address
+
+  div(id="history-dialog", style="display:none;", title="Your purchase history")
+    div(class="col-sm-12")
+      h3(id="history-title"): span(class="fa fa-money") &nbsp;Purchase History
+
+  div(id="edit-address-dialog", style="display:none;",title="Edit your address information")
+    div(class="col-sm-12")
+        div(class="form-horizontal")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Street
+            div(class="col-sm-10")
+              input(type="text", id="in-street", class="form-control", name="street")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Number
+            div(class="col-sm-4")
+              input(type="text", id="in-number", class="form-control", name="number")
+            label(class="col-sm-2 control-label") Zip Code
+            div(class="col-sm-4")
+              input(type="text", id="in-zipcode", class="form-control", name="zipcode")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") City
+            div(class="col-sm-6")
+              input(type="text", id="in-city", class="form-control", name="city")
+            label(class="col-sm-2 control-label") State
+            div(class="col-sm-2")
+              input(type="text", id="in-state", class="form-control", name="state")
+          div(class="form-group")
+            label(class="col-sm-2 control-label") Country
+            div(class="col-sm-10")
+              input(type="text", id="in-country", class="form-control", name="country")
+          hr
+          div(class="form-group")
+            div(class="col-sm-5 col-sm-offset-1")
+              button(id="btn-ok", class="col-sm-10 btn btn-info") OK
+            div(class="col-sm-5 col-sm-offset-1")
+              button(id="btn-cancel", class=" col-sm-10 btn btn-info") Cancel

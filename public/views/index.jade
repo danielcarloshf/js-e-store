@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  div(class="container")
+    div(class="jumbotron text-center")
+      h1
+        img(src="/img/JS-E-Store-logo.png", class="img-responsive center-block", alt="JS E-Store")
+        p
+          | Login or sign up to proceed.
+
+        a(href="/login", class="btn btn-default"): span(class="fa fa-sign-in") &nbsp;Login
+        a(href="/signup" class="btn btn-default"): span(class="fa fa-pencil-square-o") &nbsp;Signup

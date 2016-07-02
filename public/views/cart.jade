@@ -1,0 +1,39 @@
+extends layout
+
+block scripts
+  script(src="/libs/jquery/dist/jquery.min.js")
+  script(src="/js/cart.js")
+
+block content
+  include navigation
+
+  div(class="container")
+    if(cart.length > 0)
+      table(class="table table-hover")
+        thead
+          tr
+            th Name
+            th Price
+            th Quantity
+            th Subtotal
+            th Remove?
+        tbody
+          each product, index in cart
+            tr
+              td(id="item_name_"+index)=product.name
+                span(id="item_id_"+index, style="display: none;")=product.id
+              td(id="item_price_"+index, value=product.price)='$'+product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+              td
+                div(class="btn-group" role="group" aria-label="...")
+                  a(type="button", href="/cart", class="btn btn-default", title="Decrease quantity", onclick="setItemQty("+index+", -1);") -
+                  button(id="item_quantity_"+index, class="btn btn-default", value=product.quantity)=product.quantity
+                  a(type="button", href="/cart", class="btn btn-default", title="Increase quantity", onclick="setItemQty("+index+",  1);") +
+
+              td(id="item_subtotal_"+index)='$'+(product.price*product.quantity).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+              td: a(href="/cart", title="Remove this item.", onclick="removeFromCart("+index+"," + product.quantity+");") Remove
+        tfoot
+          tr
+            th(colspan="4") &nbsp;
+            th: a(id="btn-purchase", type="button", href="/order", value=total, class="btn btn-success btn-lg", title="Click here to finish your order.") !{'$'+total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+    else
+      h3(class="text-center") Empty cart.
